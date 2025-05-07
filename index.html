@@ -66,39 +66,3 @@
     <script src="site.js"></script>
 </body>
 </html>
-
-function handleGuess() {
-  const input = letterInput.value.trim().toLowerCase();
-
-  // Validar: solo una letra del alfabeto
-  if (!input || input.length !== 1 || !/^[a-z]$/.test(input)) {
-    alert("Por favor, ingresá una única letra válida (a-z).");
-    return;
-  }
-
-  // Verificar si la letra ya fue usada
-  if (guessedLetters.includes(input)) {
-    alert(`Ya usaste la letra "${input.toUpperCase()}". Intentá con otra.`);
-    return;
-  }
-
-  // Registrar la letra
-  guessedLetters.push(input);
-  usedLettersSpan.textContent = guessedLetters.join(", ");
-
-  // Verificar si la letra está en la palabra
-  if (word.includes(input)) {
-    updateWordDisplay(); // actualiza visualmente la palabra adivinada
-  } else {
-    errorCount++;
-    errorCountSpan.textContent = errorCount;
-  }
-
-  // Verificar el estado del juego
-  checkGameStatus();
-
-  // Limpiar el input
-  letterInput.value = "";
-  letterInput.focus();
-}
-
